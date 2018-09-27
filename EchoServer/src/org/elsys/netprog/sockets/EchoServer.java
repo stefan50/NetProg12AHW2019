@@ -25,15 +25,16 @@ public class EchoServer {
 			    new PrintWriter(clientSocket2.getOutputStream(), true);
 			BufferedReader in2 = new BufferedReader(
 			    new InputStreamReader(clientSocket2.getInputStream()));
-		    
-		    String inputLine1 = "in";
-		    String inputLine2 = "in";
 
-		    while ((inputLine1 = in1.readLine()) != null && (inputLine2 = in2.readLine()) != null) {
+		    while (true) {
+		    	String inputLine1 = in1.readLine();
+				String inputLine2 = in2.readLine();
 		        if (inputLine1.equals("exit") || inputLine2.equals("exit"))
 		            break;
-		        out1.println(inputLine2);
-		        out2.println(inputLine1);
+		        if(inputLine1 != null)
+		        	out1.println(inputLine2);
+		        if(inputLine2 != null)
+		        	out2.println(inputLine1);
 		    }
 		} catch (Throwable t) {
 			System.out.println(t.getMessage());
