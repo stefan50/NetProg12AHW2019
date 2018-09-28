@@ -11,7 +11,8 @@ public class SocketsClient {
 	public static void main(String[] args) throws IOException {
 		Socket echoSocket = null;
 		try {
-			    echoSocket = new Socket("localhost", 10001);
+				final int PORT = 10001;
+			    echoSocket = new Socket("localhost", PORT);
 			    PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
 			    BufferedReader in = new BufferedReader(
 			            new InputStreamReader(echoSocket.getInputStream()));
