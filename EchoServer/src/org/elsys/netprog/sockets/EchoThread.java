@@ -20,6 +20,9 @@ public class EchoThread extends Thread {
 		try {
 		    while (true) {
 		    	synchronized(this) {
+		    		if(Thread.interrupted()) {
+		    			throw new InterruptedException();
+		    		}
 			    	for(BufferedReader inStream: ins) {
 			    		if(inStream.ready()) {
 			    			String inputLine = inStream.readLine();
@@ -30,8 +33,9 @@ public class EchoThread extends Thread {
 			    	}
 		    	}
 		    }
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException | InterruptedException e) {
+			//e.printStackTrace();
+			System.out.println("in here");
 		}
 		
 		
